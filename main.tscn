@@ -5,21 +5,27 @@
 
 [node name="Main" type="Node"]
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+[node name="Turn_timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Turn_timer"]
 offset_left = 10.0
 offset_top = -49.0
 offset_right = 3850.0
 offset_bottom = 2111.0
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="Turn_timer/SubViewportContainer"]
 handle_input_locally = false
 size = Vector2i(3840, 2160)
 render_target_update_mode = 4
 
-[node name="Map" type="Sprite2D" parent="SubViewportContainer/SubViewport"]
+[node name="Map" type="Sprite2D" parent="Turn_timer/SubViewportContainer/SubViewport"]
 script = ExtResource("1_2lh4j")
 
-[node name="Hexes" type="Node" parent="SubViewportContainer/SubViewport/Map"]
+[node name="Hexes" type="Node" parent="Turn_timer/SubViewportContainer/SubViewport/Map"]
 
-[node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport"]
+[node name="Camera2D" type="Camera2D" parent="Turn_timer/SubViewportContainer/SubViewport"]
 script = ExtResource("1_o1jsf")
+
+[connection signal="timeout" from="Turn_timer" to="Turn_timer/SubViewportContainer/SubViewport/Map" method="_on_turn_timer_timeout"]

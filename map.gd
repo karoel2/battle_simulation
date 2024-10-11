@@ -273,10 +273,10 @@ func compute() -> void:
 		for hex in influence: hex.show_influence(true)
 
 
-func _on_timer_timeout() -> void:
+func _on_turn_timer_timeout() -> void:
 	for city_position in player_cities:
 		print(city_position)
 		spawn_unit(city_position)
 	print("_on_timer_timeout")
 	conquer_territory()
-		
+	
