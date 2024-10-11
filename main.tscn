@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://djbairp0t7opq"]
 
-[ext_resource type="Texture2D" uid="uid://duw5ad0wocdwo" path="res://icon.svg" id="1_733ht"]
+[ext_resource type="Script" path="res://map.gd" id="1_2lh4j"]
 [ext_resource type="Script" path="res://camera_2d.gd" id="1_o1jsf"]
 
 [node name="Main" type="Node"]
@@ -14,10 +14,12 @@ offset_bottom = 2111.0
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
 size = Vector2i(3840, 2160)
+render_target_update_mode = 4
+
+[node name="Map" type="Sprite2D" parent="SubViewportContainer/SubViewport"]
+script = ExtResource("1_2lh4j")
+
+[node name="Hexes" type="Node" parent="SubViewportContainer/SubViewport/Map"]
 
 [node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport"]
 script = ExtResource("1_o1jsf")
-
-[node name="Icon" type="Sprite2D" parent="SubViewportContainer/SubViewport"]
-position = Vector2(247, 175)
-texture = ExtResource("1_733ht")
